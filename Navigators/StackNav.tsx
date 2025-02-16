@@ -5,7 +5,7 @@ import Login from "../Screens/Login";
 
 const StackNav = () => {
   const Stack = createStackNavigator();
-  const isLoggedIn: boolean = false;
+  const isLoggedIn: boolean = true;
 
   const AuthenticatedStack = () => {
     return (

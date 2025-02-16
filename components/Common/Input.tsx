@@ -1,7 +1,7 @@
 import { View, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import Feather from "@expo/vector-icons/Feather";
-import { Colors } from "../utils/Theme";
+import { Colors } from "../../utils/Theme";
 
 interface InputProps {
   placeholder: string;
@@ -16,7 +16,7 @@ const Input: React.FC<InputProps> = ({ placeholder, secure }) => {
     <View>
       <View
         className={`flex-row items-center w-full bg-gray-200 justify-between h-16 px-5 rounded-lg border ${
-          isFocused ? "border-primary" : "border-gray-200"
+          isFocused ? "border-primary" : "border-gray-300"
         }`}
       >
         <TextInput

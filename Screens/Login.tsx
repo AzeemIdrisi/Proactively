@@ -1,6 +1,7 @@
 import { View, Text, SafeAreaView, Image } from "react-native";
 import React from "react";
-import Input from "../components/Input";
+import Input from "../components/Common/Input";
+import Button from "../components/Common/Button";
 
 const Login = () => {
   return (
@@ -19,7 +20,7 @@ const Login = () => {
             />
           </View>
         </View>
-        <View className="mt-10 gap-y-10">
+        <View className="mt-10 gap-y-16">
           <Text className="text-secondary">
             Login as a patient using your registered email.
           </Text>
@@ -28,6 +29,11 @@ const Login = () => {
             <Input placeholder="Enter your password" secure />
           </View>
         </View>
+        <Button
+          title="Login"
+          className="bg-primary mt-10"
+          onPress={handleLogin}
+        />
       </View>
     </SafeAreaView>
   );
