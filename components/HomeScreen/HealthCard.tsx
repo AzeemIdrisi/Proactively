@@ -1,7 +1,8 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Colors } from "../../utils/Theme";
+import { useNavigation } from "@react-navigation/native";
 
 interface Props {
   color: string;
@@ -9,6 +10,7 @@ interface Props {
   secondaryText: string;
   value: number;
   unit?: string;
+  screen: string;
 }
 
 const colorClasses: Record<string, string> = {
@@ -24,9 +26,16 @@ const HealthCard: React.FC<Props> = ({
   secondaryText,
   value,
   unit,
+  screen,
 }) => {
+  const navigation = useNavigation<any>();
+
+  const handleTap = () => {
+    navigation.navigate(screen);
+  };
   return (
-    <View
+    <Pressable
+      onPress={handleTap}
       className={`w-52 h-40 rounded-xl p-4 px-5  justify-between ${
         colorClasses[color] || "bg-gray-100 text-gray-800"
       }`}
@@ -52,7 +61,7 @@ const HealthCard: React.FC<Props> = ({
         {value.toLocaleString()}{" "}
         <Text className="text-sm font-normal">{unit}</Text>
       </Text>
-    </View>
+    </Pressable>
   );
 };
 

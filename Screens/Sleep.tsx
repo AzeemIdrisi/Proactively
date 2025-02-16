@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Welcome = () => {
+const Sleep = () => {
   return (
     <View>
-      <Text>Welcome</Text>
+      <Text>Sleep</Text>
     </View>
   );
 };
 
-export default Welcome;
+export default Sleep;

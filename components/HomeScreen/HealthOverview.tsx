@@ -9,6 +9,7 @@ const cardsData = [
     secondaryText: "Updated",
     value: 12000,
     color: "blue",
+    screen: "steps",
   },
   {
     primaryText: "BMI",
@@ -16,6 +17,7 @@ const cardsData = [
     value: 22.5,
     color: "yellow",
     unit: "kg/m²",
+    screen: "bmi",
   },
   {
     primaryText: "Sleep",
@@ -23,6 +25,7 @@ const cardsData = [
     value: 8,
     color: "orange",
     unit: "hours",
+    screen: "sleep",
   },
 ];
 
@@ -44,6 +47,7 @@ const HealthOverview = () => {
             value={item.value}
             color={item.color}
             unit={item.unit}
+            screen={item.screen}
           />
         )}
       />

@@ -5,6 +5,7 @@ import Account from "../Screens/Account";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Colors } from "../utils/Theme";
+import HomeStack from "./HomeStack";
 
 const TabNav = () => {
   const Tab = createBottomTabNavigator();
@@ -19,8 +20,8 @@ const TabNav = () => {
       }}
     >
       <Tab.Screen
-        name="home"
-        component={Home}
+        name="homeStack"
+        component={HomeStack}
         options={{
           title: "Home",
           tabBarIcon: ({ size, color }) => (

@@ -1,11 +1,19 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Colors } from "../../utils/Theme";
+import { useNavigation } from "@react-navigation/native";
 
 const AppointmentCard = () => {
+  const navigation = useNavigation<any>();
+  const handleTap = () => {
+    navigation.navigate("appointment");
+  };
   return (
-    <View className="border border-gray-200 p-5 rounded-xl items-start">
+    <Pressable
+      onPress={handleTap}
+      className="border border-gray-200 p-5 rounded-xl items-start"
+    >
       <View className="flex-row items-center justify-between w-full">
         <Text className="bg-emerald-600 text-white uppercase px-2 py-1 rounded">
           Upcoming
@@ -49,7 +57,7 @@ const AppointmentCard = () => {
           Thu, December 21, 2024 | 10:00 AM PST{" "}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

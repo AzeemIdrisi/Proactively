@@ -4,6 +4,7 @@ import Input from "../components/Common/Input";
 import Button from "../components/Common/Button";
 
 const Login = () => {
+  const handleLogin = () => {};
   return (
     <SafeAreaView>
       <View className="h-screen mx-5 mt-10">
