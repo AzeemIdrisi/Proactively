@@ -32,7 +32,7 @@ const HealthOverview = () => {
       <Text className="font-semibold text-2xl">Health Overview</Text>
 
       <FlatList
-        className="mt-5"
+        className="mt-5 w-full overflow-visible"
         horizontal
         contentContainerStyle={{ gap: 10 }}
         showsHorizontalScrollIndicator={false}

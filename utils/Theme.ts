@@ -3,6 +3,7 @@ export const Colors = {
   secondary: "#707070",
   tertiary: "#6156B2",
   primaryDark: "#3D53B6",
+  success: "#49A275",
   light: "#EEEEEE",
   dark: "#222831",
 };
