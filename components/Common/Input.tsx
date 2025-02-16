@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ placeholder, secure }) => {
   return (
     <View>
       <View
-        className={`flex-row items-center w-full bg-gray-200 justify-between h-16 px-5 rounded-lg border ${
+        className={`flex-row items-center w-full justify-between h-16 px-5 rounded-lg border ${
           isFocused ? "border-primary" : "border-gray-300"
         }`}
       >
