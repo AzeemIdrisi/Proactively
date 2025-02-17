@@ -3,6 +3,7 @@ import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Colors } from "../../utils/Theme";
 import { useNavigation } from "@react-navigation/native";
+import StatusText from "../Common/StatusText";
 
 const AppointmentCard = () => {
   const navigation = useNavigation<any>();
@@ -15,9 +16,7 @@ const AppointmentCard = () => {
       className="border border-gray-200 p-5 rounded-xl items-start"
     >
       <View className="flex-row items-center justify-between w-full">
-        <Text className="bg-emerald-600 text-white uppercase px-2 py-1 rounded">
-          Upcoming
-        </Text>
+        <StatusText text="upcoming" />
         <FontAwesome name="angle-right" size={24} color={Colors.secondary} />
       </View>
       <View className="flex-row items-center justify-between w-full mt-6">
@@ -33,7 +32,7 @@ const AppointmentCard = () => {
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              MD, DipABLLoremIpsum
+              MD, DipABLM
             </Text>
           </Text>
           <Text
