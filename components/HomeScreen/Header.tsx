@@ -1,7 +1,13 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import { useNavigation } from "@react-navigation/native";
 const Header = () => {
+  const navigation = useNavigation<any>();
+
+  const handleAlertsTap = () => {
+    navigation.navigate("alerts");
+  };
   return (
     <View className="flex-row justify-between items-center px-5 py-5">
       <Image
@@ -11,10 +17,10 @@ const Header = () => {
         }}
       />
       <Text className="text-lg text-white font-medium">Ethan Harkinson</Text>
-      <View className="relative">
+      <Pressable onPress={handleAlertsTap} className="relative">
         <FontAwesome5 name="bell" size={24} color="white" />
         <View className="bg-red-500 size-2 rounded-full absolute right-0 top-0"></View>
-      </View>
+      </Pressable>
     </View>
   );
 };

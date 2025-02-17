@@ -53,14 +53,23 @@ const HealthCard: React.FC<Props> = ({
           {secondaryText}
         </Text>
       </View>
-      <Text
-        className={`${
-          colorClasses[color] || "bg-gray-100 text-gray-800"
-        } text-3xl font-bold`}
-      >
-        {value.toLocaleString()}{" "}
-        <Text className="text-sm font-normal">{unit}</Text>
-      </Text>
+
+      <View className="flex-row items-end">
+        <Text
+          className={`${
+            colorClasses[color] || "bg-gray-100 text-gray-800"
+          } text-3xl font-bold`}
+        >
+          {value.toLocaleString()}{" "}
+        </Text>
+        <Text
+          className={`${
+            colorClasses[color] || "bg-gray-100 text-gray-800"
+          } text-sm font-normal mb-1`}
+        >
+          {unit}
+        </Text>
+      </View>
     </Pressable>
   );
 };

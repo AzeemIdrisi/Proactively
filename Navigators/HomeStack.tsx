@@ -5,6 +5,7 @@ import Appointment from "../Screens/Appointment";
 import BMI from "../Screens/BMI";
 import Steps from "../Screens/Steps";
 import Sleep from "../Screens/Sleep";
+import Alerts from "../Screens/Alerts";
 
 const HomeStack = () => {
   const Stack = createStackNavigator();
@@ -15,6 +16,7 @@ const HomeStack = () => {
         name="home"
         component={Home}
         options={{
+          title: "Home",
           headerShown: false,
         }}
       />
@@ -44,6 +46,13 @@ const HomeStack = () => {
         component={Sleep}
         options={{
           headerTitle: "Sleep entry",
+        }}
+      />
+      <Stack.Screen
+        name="alerts"
+        component={Alerts}
+        options={{
+          title: "Alerts",
         }}
       />
     </Stack.Navigator>
