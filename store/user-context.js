@@ -13,7 +13,7 @@ export const UserContext = createContext({
     sleep: 0,
   },
   setHealthData: (healthData) => {},
-  tasks: [{ id: null, status: false }],
+  tasks: {},
   setTasks: (tasks) => {},
 });
 
@@ -26,7 +26,7 @@ export const UserContextProvider = ({ children }) => {
     height: 0,
     sleep: 0,
   });
-  const [tasks, setTasks] = useState([{ id: null, status: false }]);
+  const [tasks, setTasks] = useState({});
 
   const authenticate = async (userId) => {
     setUserId(userId);
@@ -42,9 +42,10 @@ export const UserContextProvider = ({ children }) => {
       height: 0,
       sleep: 0,
     });
-    setTasks([{ id: null, status: false }]);
+    setTasks({});
     await AsyncStorage.removeItem("healthData");
     await AsyncStorage.removeItem("userId");
+    await AsyncStorage.removeItem("tasks");
   };
 
   const value = {
@@ -60,8 +61,12 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const loadUserData = async () => {
       const storedHealthData = await AsyncStorage.getItem("healthData");
+      const storedTasksData = await AsyncStorage.getItem("tasks");
       if (storedHealthData) {
         setHealthData(JSON.parse(storedHealthData));
+      }
+      if (storedTasksData) {
+        setTasks(JSON.parse(storedTasksData));
       }
     };
     loadUserData();

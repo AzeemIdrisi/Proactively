@@ -1,15 +1,31 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { Colors } from "../../utils/Theme";
+import { UserContext } from "../../store/user-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props {
   title: string;
   author: string;
   date: string;
+  index: number;
 }
-const TodoCards: React.FC<Props> = ({ title, author, date }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const TodoCards: React.FC<Props> = ({ title, author, date, index }) => {
+  const { tasks, setTasks } = useContext(UserContext);
+
+  const isChecked = tasks[index.toString()];
+  const handleCheck = async (checked: boolean) => {
+    setTasks((prevTasks: any) => ({
+      ...prevTasks,
+      [index.toString()]: checked,
+    }));
+
+    await AsyncStorage.setItem(
+      "tasks",
+      JSON.stringify({ ...tasks, [index.toString()]: checked })
+    );
+  };
   return (
     <View className="border border-gray-200 p-5 rounded-xl items-start justify-start flex-row">
       <View className="mt-2">
@@ -21,9 +37,8 @@ const TodoCards: React.FC<Props> = ({ title, author, date }) => {
             borderWidth: 2,
             borderColor: isChecked ? Colors.success : "gray",
           }}
-          onPress={(checked: boolean) => {
-            setIsChecked(checked);
-          }}
+          onPress={handleCheck}
+          isChecked={isChecked}
         />
       </View>
 

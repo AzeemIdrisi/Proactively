@@ -1,7 +1,8 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import TodoCards from "./TodoCards";
 import { FlatList } from "react-native-gesture-handler";
+import { UserContext } from "../../store/user-context";
 
 const todoData = [
   {
@@ -27,15 +28,28 @@ const todoData = [
 ];
 
 const Todos = () => {
+  const { tasks } = useContext(UserContext);
+
+  const completedTodos = Object.values(tasks).filter(
+    (status) => status === true
+  ).length;
+
+  const percentage = (completedTodos / 4) * 100;
+
   return (
     <View className="py-10">
       <Text className="font-semibold text-2xl">
         Let's check off your to-dos
       </Text>
       <View>
-        <Text className="mt-10 text-secondary">1/4 Completed</Text>
+        <Text className="mt-10 text-secondary">
+          {completedTodos}/4 Completed
+        </Text>
         <View className="mt-4 relative">
-          <View className="absolute w-1/4 z-10 bg-green-400 h-5 rounded-full" />
+          <View
+            className={`absolute z-10 bg-green-400 h-5 rounded-full`}
+            style={{ width: `${percentage}%` }}
+          />
           <View className="absolute w-full bg-green-100 h-5 rounded-full" />
         </View>
       </View>
@@ -44,11 +58,13 @@ const Todos = () => {
           scrollEnabled={false}
           contentContainerStyle={{ gap: 15 }}
           data={todoData}
-          renderItem={({ item }) => (
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => (
             <TodoCards
               title={item.title}
               author={item.author}
               date={item.date}
+              index={index}
             />
           )}
         />
