@@ -1,11 +1,32 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Unitsbox from "../components/Common/Unitsbox";
 import Button from "../components/Common/Button";
+import { UserContext } from "../store/user-context";
+import { NavigationProp } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Steps = () => {
-  const handleSubmit = () => {};
-  const [stepsCount, setStepsCount] = useState<string>("14425");
+interface ScreenProps {
+  navigation: NavigationProp<"">;
+}
+const Steps: React.FC<ScreenProps> = ({ navigation }) => {
+  const { healthData, setHealthData } = useContext(UserContext);
+
+  const [stepsCount, setStepsCount] = useState<string>(
+    healthData.steps.toString() === "0" ? "" : healthData.steps.toString()
+  );
+  const handleSubmit = async () => {
+    setHealthData((prev: typeof healthData) => {
+      return { ...prev, steps: stepsCount };
+    });
+
+    await AsyncStorage.setItem(
+      "healthData",
+      JSON.stringify({ ...healthData, steps: stepsCount })
+    );
+
+    navigation.goBack();
+  };
   return (
     <View className="h-screen m-5">
       <Unitsbox

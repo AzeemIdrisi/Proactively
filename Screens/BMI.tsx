@@ -1,12 +1,37 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Unitsbox from "../components/Common/Unitsbox";
 import Button from "../components/Common/Button";
+import { UserContext } from "../store/user-context";
+import { NavigationProp } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const BMI = () => {
-  const [weight, setWeight] = useState<string>("78");
-  const [height, setHeight] = useState<string>("154");
-  const handleSubmit = () => {};
+interface ScreenProps {
+  navigation: NavigationProp<"">;
+}
+const BMI: React.FC<ScreenProps> = ({ navigation }) => {
+  const { healthData, setHealthData } = useContext(UserContext);
+
+  const [weight, setWeight] = useState<string>(
+    healthData.weight.toString() === "0" ? "" : healthData.weight.toString()
+  );
+  const [height, setHeight] = useState<string>(
+    healthData.height.toString() === "0" ? "" : healthData.height.toString()
+  );
+
+  const handleSubmit = async () => {
+    setHealthData((prev: typeof healthData) => {
+      return { ...prev, height, weight };
+    });
+
+    await AsyncStorage.setItem(
+      "healthData",
+      JSON.stringify({ ...healthData, height, weight })
+    );
+
+    navigation.goBack();
+  };
+
   return (
     <View className="h-screen m-5">
       <Unitsbox

@@ -5,7 +5,7 @@ import Score from "./Score";
 
 const Metrics = () => {
   return (
-    <View className="bg-darkPrimary p-2">
+    <View className="bg-darkPrimary p-2 h-screen">
       <Header />
       <Score />
     </View>

@@ -8,7 +8,7 @@ interface Props {
   color: string;
   primaryText: string;
   secondaryText: string;
-  value: number;
+  value: string;
   unit?: string;
   screen: string;
 }
@@ -60,15 +60,17 @@ const HealthCard: React.FC<Props> = ({
             colorClasses[color] || "bg-gray-100 text-gray-800"
           } text-3xl font-bold`}
         >
-          {value.toLocaleString()}{" "}
+          {value === "-" ? "-" : value.toLocaleString()}{" "}
         </Text>
-        <Text
-          className={`${
-            colorClasses[color] || "bg-gray-100 text-gray-800"
-          } text-sm font-normal mb-1`}
-        >
-          {unit}
-        </Text>
+        {value !== "-" && (
+          <Text
+            className={`${
+              colorClasses[color] || "bg-gray-100 text-gray-800"
+            } text-sm font-normal mb-1`}
+          >
+            {unit}
+          </Text>
+        )}
       </View>
     </Pressable>
   );

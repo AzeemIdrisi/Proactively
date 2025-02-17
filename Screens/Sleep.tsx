@@ -1,23 +1,42 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Button from "../components/Common/Button";
+import { NavigationProp } from "@react-navigation/native";
+import { UserContext } from "../store/user-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Sleep = () => {
-  const [hour, setHour] = useState<number>(0);
+interface ScreenProps {
+  navigation: NavigationProp<"">;
+}
+const Sleep: React.FC<ScreenProps> = ({ navigation }) => {
+  const { healthData, setHealthData } = useContext(UserContext);
+
+  const [hour, setHour] = useState<string>(healthData.sleep.toString());
 
   const addHour = () => {
-    if (hour < 24) {
-      setHour((prev) => prev + 1);
+    if (parseInt(hour) < 24) {
+      setHour((prev: string) => (parseInt(prev) + 1).toString());
     }
   };
   const subtractHour = () => {
-    if (hour > 0) {
-      setHour((prev) => prev - 1);
+    if (parseInt(hour) > 0) {
+      setHour((prev: string) => (parseInt(prev) - 1).toString());
     }
   };
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    setHealthData((prev: typeof healthData) => {
+      return { ...prev, sleep: hour };
+    });
+
+    await AsyncStorage.setItem(
+      "healthData",
+      JSON.stringify({ ...healthData, sleep: hour })
+    );
+
+    navigation.goBack();
+  };
 
   return (
     <View className="h-screen m-5">
