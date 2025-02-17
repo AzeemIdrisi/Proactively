@@ -6,9 +6,16 @@ import { Colors } from "../../utils/Theme";
 interface InputProps {
   placeholder: string;
   secure?: boolean;
+  value: string;
+  setValue: (value: string) => void;
 }
 
-const Input: React.FC<InputProps> = ({ placeholder, secure }) => {
+const Input: React.FC<InputProps> = ({
+  placeholder,
+  secure,
+  value,
+  setValue,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -20,6 +27,8 @@ const Input: React.FC<InputProps> = ({ placeholder, secure }) => {
         }`}
       >
         <TextInput
+          value={value}
+          onChangeText={setValue}
           placeholder={placeholder}
           className={`h-full ${secure ? "w-[90%]" : "w-full"}`}
           onFocus={() => setIsFocused(true)}

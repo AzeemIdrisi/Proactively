@@ -1,12 +1,27 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
+import React, { useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Colors } from "../utils/Theme";
+import { UserContext } from "../store/user-context";
 
 const Account = () => {
-  const handleLogout = () => {};
+  const { logOut } = useContext(UserContext);
+
+  const handleLogout = () => {
+    Alert.alert("Logout", "Are you sure you want to logout of your account?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Yes, Logout",
+        onPress: () => logOut(),
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView>
       <View className="p-5 h-screen justify-between">
