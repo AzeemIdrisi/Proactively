@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../Screens/Home";
 import Account from "../Screens/Account";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -15,7 +14,18 @@ const TabNav = () => {
       screenOptions={{
         tabBarActiveTintColor: Colors.tertiary,
         tabBarLabelStyle: { fontSize: 14 },
-        tabBarStyle: { paddingHorizontal: 30 },
+        tabBarStyle: {
+          position: "absolute",
+          backgroundColor: "white",
+          borderTopLeftRadius: 15,
+          borderTopRightRadius: 15,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: -3 },
+          shadowOpacity: 0.1,
+          shadowRadius: 5,
+          elevation: 5,
+          paddingHorizontal: 50,
+        },
         headerShown: false,
       }}
     >

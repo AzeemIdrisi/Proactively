@@ -19,7 +19,7 @@ const HomeBottomSheet = () => {
       animateOnMount={false}
     >
       <BottomSheetScrollView showsVerticalScrollIndicator={false}>
-        <View className="px-5">
+        <View className="px-5 pb-40">
           <AppointmentCard />
           <HealthOverview />
           <Todos />

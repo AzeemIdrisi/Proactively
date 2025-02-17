@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import React from "react";
 import StatusText from "../components/Common/StatusText";
+import Button from "../components/Common/Button";
+import Feather from "@expo/vector-icons/Feather";
 
 const Appointment = () => {
   const openMeet = () => {
@@ -45,13 +47,19 @@ const Appointment = () => {
         </View>
       </View>
 
-      <View className="mt-8 gap-y-2">
-        <Text className="font-medium text-xl">Meeting link:</Text>
-        <TouchableOpacity onPress={openMeet}>
-          <Text className="text-secondary text-lg">
-            www.meet.google.com/abc-defa-dwa
-          </Text>
-        </TouchableOpacity>
+      <View className="justify-between h-80">
+        <View className="mt-8 gap-y-2">
+          <Text className="font-medium text-xl">Meeting link:</Text>
+          <TouchableOpacity onPress={openMeet}>
+            <Text className="text-secondary text-lg">
+              www.meet.google.com/abc-defa-dwa
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <Button title="Join meeting" onPress={openMeet}>
+          <Feather name="arrow-up-right" size={24} color="white" />
+        </Button>
       </View>
     </ScrollView>
   );
