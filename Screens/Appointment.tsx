@@ -6,17 +6,23 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import StatusText from "../components/Common/StatusText";
 import Button from "../components/Common/Button";
 import Feather from "@expo/vector-icons/Feather";
+import { UserContext } from "../store/user-context";
 
 const Appointment = ({ navigation, route }: any) => {
-  const { doctor, doctorImg, dataTime, meetingLink } = route.params;
+  const { appointmentData } = useContext(UserContext);
+
+  const { doctor, doctorSpec, doctorImg, dataTime, meetingLink } =
+    appointmentData;
 
   const openMeet = () => {
     Linking.openURL(
-      meetingLink ? meetingLink : "https://meet.google.com/abc-defa-dwa"
+      meetingLink.length > 0
+        ? meetingLink
+        : "https://meet.google.com/abc-defa-dwa"
     );
   };
 
@@ -29,9 +35,10 @@ const Appointment = ({ navigation, route }: any) => {
       <View className="w-full items-center justify-center gap-y-8 py-5 pb-10 border-b-2 border-b-gray-200">
         <Image
           source={{
-            uri: doctorImg
-              ? doctorImg
-              : "https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg",
+            uri:
+              doctorImg.length > 0
+                ? doctorImg
+                : "https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg",
           }}
           className="size-36 rounded-full"
         />
@@ -40,7 +47,7 @@ const Appointment = ({ navigation, route }: any) => {
             Your upcoming appointment with
           </Text>
           <Text className="text-secondary text-lg">
-            {doctor ? doctor : "Laurie Simons, MD, DipABLM"}
+            {`${doctor.length > 0 ? doctor : "Laurie Simons"}, ${doctorSpec.length > 0 ? doctorSpec : "MD, DipABLM"}`}
           </Text>
         </View>
         <View className="items-center w-full gap-y-4">
@@ -48,7 +55,9 @@ const Appointment = ({ navigation, route }: any) => {
             Appointment
           </Text>
           <Text className="text-secondary text-base">
-            {dataTime ? dataTime : "Thu, December 21, 2024 | 10:00 AM PST"}
+            {dataTime.length > 0
+              ? dataTime
+              : "Thu, December 21, 2024 | 10:00 AM PST"}
           </Text>
         </View>
       </View>
@@ -58,7 +67,7 @@ const Appointment = ({ navigation, route }: any) => {
           <Text className="font-medium text-xl">Meeting link:</Text>
           <TouchableOpacity onPress={openMeet}>
             <Text className="text-secondary text-lg">
-              {meetingLink
+              {meetingLink.length > 0
                 ? meetingLink
                 : "https://meet.google.com/abc-defa-dwa"}
             </Text>

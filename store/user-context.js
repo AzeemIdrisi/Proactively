@@ -15,6 +15,14 @@ export const UserContext = createContext({
   setHealthData: (healthData) => {},
   tasks: {},
   setTasks: (tasks) => {},
+  appointmentData: {
+    doctor: "",
+    doctorSpec: "",
+    doctorImg: "",
+    dataTime: "",
+    meetingLink: "",
+  },
+  setAppointmentData: (data) => {},
 });
 
 export const UserContextProvider = ({ children }) => {
@@ -27,6 +35,13 @@ export const UserContextProvider = ({ children }) => {
     sleep: 0,
   });
   const [tasks, setTasks] = useState({});
+  const [appointmentData, setAppointmentData] = useState({
+    doctor: "",
+    doctorSpec: "",
+    doctorImg: "",
+    dataTime: "",
+    meetingLink: "",
+  });
 
   const authenticate = async (userId) => {
     setUserId(userId);
@@ -43,6 +58,13 @@ export const UserContextProvider = ({ children }) => {
       sleep: 0,
     });
     setTasks({});
+    setAppointmentData({
+      doctor: "",
+      doctorSpec: "",
+      doctorImg: "",
+      dataTime: "",
+      meetingLink: "",
+    });
     await AsyncStorage.removeItem("healthData");
     await AsyncStorage.removeItem("userId");
     await AsyncStorage.removeItem("tasks");
@@ -56,6 +78,8 @@ export const UserContextProvider = ({ children }) => {
     setHealthData,
     tasks,
     setTasks,
+    appointmentData,
+    setAppointmentData,
   };
 
   useEffect(() => {

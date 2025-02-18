@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Metrics from "../components/HomeScreen/Metrics";
 
 import HomeBottomSheet from "../components/HomeScreen/HomeBottomSheet";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Notifications from "expo-notifications";
 import { useNavigation } from "@react-navigation/native";
+import { UserContext } from "../store/user-context";
 
 const Home = () => {
   const navigation = useNavigation<any>();
+  const { setAppointmentData } = useContext(UserContext);
 
   useEffect(() => {
     // Listener for notifications when the app is in the foreground
@@ -34,7 +36,8 @@ const Home = () => {
           const parsedParams = params ? JSON.parse(params) : {};
 
           // Navigate to the screen
-          navigation.navigate(screen, parsedParams);
+          setAppointmentData(parsedParams);
+          navigation.navigate(screen);
         }
       });
 
