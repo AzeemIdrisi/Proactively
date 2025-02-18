@@ -44,7 +44,7 @@ const TodoCards: React.FC<Props> = ({ title, author, date, index }) => {
 
       <View className="w-full">
         <Text
-          className={`font-medium text-lg w-[90%] ${isChecked && "opacity-50"}`}
+          className={`font-medium text-lg w-[85%] ${isChecked && "opacity-50"}`}
         >
           {title}
         </Text>
