@@ -3,7 +3,6 @@ import "./global.css";
 import Navigation from "./Navigators/Navigation";
 import { useEffect } from "react";
 import { getMessaging } from "@react-native-firebase/messaging";
-import { Alert } from "react-native";
 import messaging from "@react-native-firebase/messaging";
 import * as Notifications from "expo-notifications";
 
@@ -41,10 +40,10 @@ export const sendNotification = async (remoteMessage: any) => {
       content: {
         title: remoteMessage?.notification?.title,
         body: remoteMessage?.notification?.body,
+        data: remoteMessage?.notification?.data,
       },
       trigger: null,
     });
-    // Alert.alert("A new FCM message arrived!", JSON.stringify(remoteMessage));
   } catch (error) {
     console.log("Error in App.js", error);
   }
@@ -67,7 +66,7 @@ export default function App() {
     const token = await messaging().getToken();
     console.log("🚀 ~ getFcmToken ~ token:", token);
   };
-  getFcmToken();
+  // getFcmToken();
 
   return (
     <>

@@ -11,9 +11,13 @@ import StatusText from "../components/Common/StatusText";
 import Button from "../components/Common/Button";
 import Feather from "@expo/vector-icons/Feather";
 
-const Appointment = () => {
+const Appointment = ({ navigation, route }: any) => {
+  const { doctor, doctorImg, dataTime, meetingLink } = route.params;
+
   const openMeet = () => {
-    Linking.openURL("https://meet.google.com/abc-defa-dwa");
+    Linking.openURL(
+      meetingLink ? meetingLink : "https://meet.google.com/abc-defa-dwa"
+    );
   };
 
   return (
@@ -25,7 +29,9 @@ const Appointment = () => {
       <View className="w-full items-center justify-center gap-y-8 py-5 pb-10 border-b-2 border-b-gray-200">
         <Image
           source={{
-            uri: "https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg",
+            uri: doctorImg
+              ? doctorImg
+              : "https://i.pinimg.com/736x/f3/51/c7/f351c7d0a2e54acf12eba031d49bf783.jpg",
           }}
           className="size-36 rounded-full"
         />
@@ -34,7 +40,7 @@ const Appointment = () => {
             Your upcoming appointment with
           </Text>
           <Text className="text-secondary text-lg">
-            Laurie Simons, MD, DipABLM
+            {doctor ? doctor : "Laurie Simons, MD, DipABLM"}
           </Text>
         </View>
         <View className="items-center w-full gap-y-4">
@@ -42,7 +48,7 @@ const Appointment = () => {
             Appointment
           </Text>
           <Text className="text-secondary text-base">
-            Thu, December 21, 2024 | 10:00 AM PST
+            {dataTime ? dataTime : "Thu, December 21, 2024 | 10:00 AM PST"}
           </Text>
         </View>
       </View>
@@ -52,7 +58,9 @@ const Appointment = () => {
           <Text className="font-medium text-xl">Meeting link:</Text>
           <TouchableOpacity onPress={openMeet}>
             <Text className="text-secondary text-lg">
-              https://meet.google.com/abc-defa-dwa
+              {meetingLink
+                ? meetingLink
+                : "https://meet.google.com/abc-defa-dwa"}
             </Text>
           </TouchableOpacity>
         </View>

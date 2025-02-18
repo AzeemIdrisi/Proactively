@@ -8,7 +8,6 @@ import { getMessaging } from "@react-native-firebase/messaging";
 // the environment is set up appropriately
 
 getMessaging().setBackgroundMessageHandler(async (remoteMessage) => {
-  console.log("Message handled in the background!", remoteMessage);
   sendNotification(remoteMessage);
 });
 
