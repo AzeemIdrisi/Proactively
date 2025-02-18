@@ -1,5 +1,8 @@
-# Proactively App
-A health score tracker app prototype built with React Native.
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/4c24fa24-efa5-4376-8fa2-e4123cebeb78" width="128" height="128" style="display: block; margin: 0 auto"/>
+    <h1>Proactively App</h1>
+    <h3>A health score tracker app prototype built with React Native.</h3>
+</div>
 
 ## Tech Stack
 - TypeScript
