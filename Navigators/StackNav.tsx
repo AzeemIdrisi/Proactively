@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActivityIndicator, View } from "react-native";
 import { Colors } from "../utils/Theme";
 import { SafeAreaView } from "react-native-safe-area-context";
+import BootSplash from "react-native-bootsplash";
 
 const StackNav = () => {
   const Stack = createStackNavigator();
@@ -23,6 +24,7 @@ const StackNav = () => {
       authenticate(userId);
     }
     setIsAuthenticating(false);
+    await BootSplash.hide({ fade: true });
   };
 
   useEffect(() => {
