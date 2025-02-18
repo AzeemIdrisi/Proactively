@@ -6,6 +6,7 @@ import { UserContext } from "../store/user-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ActivityIndicator, View } from "react-native";
 import { Colors } from "../utils/Theme";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const StackNav = () => {
   const Stack = createStackNavigator();
@@ -44,9 +45,9 @@ const StackNav = () => {
 
   if (isAuthenticating) {
     return (
-      <View className="bg-white h-screen justify-center items-center">
+      <SafeAreaView className="bg-white h-screen justify-center items-center">
         <ActivityIndicator color={Colors.primary} size={"large"} />
-      </View>
+      </SafeAreaView>
     );
   }
 

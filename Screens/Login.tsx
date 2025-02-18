@@ -1,16 +1,10 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  Alert,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, Image, Alert, ActivityIndicator } from "react-native";
 import React, { useContext, useState } from "react";
 import Input from "../components/Common/Input";
 import Button from "../components/Common/Button";
 import { UserContext } from "../store/user-context";
 import { Colors } from "../utils/Theme";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Login = () => {
   const { authenticate } = useContext(UserContext);
@@ -44,10 +38,10 @@ const Login = () => {
 
   if (logginIn) {
     return (
-      <View className="h-screen justify-center items-center">
+      <SafeAreaView className="h-screen justify-center items-center">
         <ActivityIndicator color={Colors.primary} size={"large"} />
         <Text className="mt-5 text-primary font-semibold">Logging in...</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 

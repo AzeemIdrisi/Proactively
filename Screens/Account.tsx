@@ -24,7 +24,7 @@ const Account = () => {
 
   return (
     <SafeAreaView>
-      <View className="p-5 h-screen justify-between">
+      <View className="p-5 justify-between h-[97%]">
         <View>
           <View className="flex-row items-center justify-start gap-x-5 mt-5">
             <Image
@@ -61,7 +61,7 @@ const Account = () => {
             <FontAwesome name="angle-right" size={24} color={Colors.danger} />
           </TouchableOpacity>
         </View>
-        <Text className="pb-40 text-secondary text-center">
+        <Text className="text-secondary text-center">
           Proactively version 1.0.0
         </Text>
       </View>

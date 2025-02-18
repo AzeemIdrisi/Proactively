@@ -13,7 +13,7 @@ import Feather from "@expo/vector-icons/Feather";
 
 const Appointment = () => {
   const openMeet = () => {
-    Linking.openURL("https://www.meet.google.com/abc-defa-dwa");
+    Linking.openURL("https://meet.google.com/abc-defa-dwa");
   };
 
   return (
@@ -47,12 +47,12 @@ const Appointment = () => {
         </View>
       </View>
 
-      <View className="justify-between h-80">
+      <View className="justify-between gap-y-20 mb-40">
         <View className="mt-8 gap-y-2">
           <Text className="font-medium text-xl">Meeting link:</Text>
           <TouchableOpacity onPress={openMeet}>
             <Text className="text-secondary text-lg">
-              www.meet.google.com/abc-defa-dwa
+              https://meet.google.com/abc-defa-dwa
             </Text>
           </TouchableOpacity>
         </View>
