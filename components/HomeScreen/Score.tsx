@@ -26,6 +26,13 @@ const Score = () => {
     const bmiScore = ((BMI_MAX - bmi) / (BMI_MAX - BMI_OPTIMAL)) * 1000;
     const sleepScore = (sleep / MAX_SLEEP) * 1000;
 
+    const final = stepsScore + bmiScore + sleepScore;
+    if (final < 0) {
+      return 0;
+    }
+    if (final > 3000) {
+      return 3000;
+    }
     return stepsScore + bmiScore + sleepScore;
   };
 

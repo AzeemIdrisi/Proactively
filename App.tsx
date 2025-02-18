@@ -3,7 +3,6 @@ import "./global.css";
 import Navigation from "./Navigators/Navigation";
 import { useEffect } from "react";
 import { getMessaging } from "@react-native-firebase/messaging";
-import messaging from "@react-native-firebase/messaging";
 import * as Notifications from "expo-notifications";
 
 Notifications.setNotificationHandler({
@@ -61,12 +60,6 @@ export default function App() {
   useEffect(() => {
     registerForPushNotificationsAsync();
   }, []);
-
-  const getFcmToken = async () => {
-    const token = await messaging().getToken();
-    console.log("🚀 ~ getFcmToken ~ token:", token);
-  };
-  // getFcmToken();
 
   return (
     <>

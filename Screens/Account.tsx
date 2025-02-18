@@ -1,13 +1,30 @@
-import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+  ToastAndroid,
+  Pressable,
+} from "react-native";
 import React, { useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Colors } from "../utils/Theme";
 import { UserContext } from "../store/user-context";
+import * as Clipboard from "expo-clipboard";
+import messaging from "@react-native-firebase/messaging";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const Account = () => {
   const { logOut } = useContext(UserContext);
+
+  const handleCopyFCM = async () => {
+    const token = await messaging().getToken();
+    await Clipboard.setStringAsync(token?.toString());
+    ToastAndroid.show("FCM token copied to clipboard.", ToastAndroid.LONG);
+  };
 
   const handleLogout = () => {
     Alert.alert("Logout", "Are you sure you want to logout of your account?", [
@@ -47,6 +64,13 @@ const Account = () => {
             />
             <Text className="font-medium text-lg">Account</Text>
           </View>
+          <Pressable
+            onPress={handleCopyFCM}
+            className="mt-2 flex-row justify-start items-center gap-x-2 border-b-2 border-gray-200 py-5"
+          >
+            <MaterialIcons name="content-copy" size={24} color="black" />
+            <Text className="text-md font-semibold">Copy FCM Token</Text>
+          </Pressable>
 
           <TouchableOpacity
             onPress={handleLogout}

@@ -52,9 +52,11 @@ const HealthOverview = () => {
       <HealthCard
         primaryText={item.primaryText}
         secondaryText={
-          val === "0" || val === "NaN" ? "No data" : item.secondaryText
+          val === "0" || val === "NaN" || val === "Infinity"
+            ? "No data"
+            : item.secondaryText
         }
-        value={val === "0" || val === "NaN" ? "-" : val}
+        value={val === "0" || val === "NaN" || val === "Infinity" ? "-" : val}
         color={item.color}
         unit={item.unit}
         screen={item.screen}

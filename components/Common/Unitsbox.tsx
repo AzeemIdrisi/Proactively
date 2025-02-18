@@ -18,19 +18,16 @@ const Unitsbox: React.FC<Props> = ({
   return (
     <View className={className}>
       <Text className="font-medium text-xl">{label}</Text>
-      <View className="mt-2 border border-gray-200 p-5 py-8 rounded-xl items-end justify-start flex-row w-64">
+      <View className="mt-2 border border-gray-200 p-5 py-8 rounded-xl items-end justify-start flex-row w-64 gap-x-2">
         <TextInput
           value={value}
           placeholder="0"
           onChangeText={setValue}
           maxLength={5}
           keyboardType="number-pad"
-          className={`font-bold text-4xl w-full relative`}
+          className={`font-bold text-4xl`}
         />
-        <Text className="absolute inset-0 top-7 left-5 mb-1 text-2xl text-secondary font-medium -z-10">
-          <Text className="font-bold text-4xl text-transparent">
-            {value.length > 0 ? value : "0"}
-          </Text>{" "}
+        <Text className=" mb-1 text-2xl text-secondary font-medium -z-10">
           {unit}
         </Text>
       </View>
